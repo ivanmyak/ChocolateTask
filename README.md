@@ -18,7 +18,7 @@ cp .env.example .env
 
 # 2) Отредактировать .env:
 #   ASPNETCORE_ENVIRONMENT=Development
-#   ConnectionStrings__Default=<твоя строка>
+#   ChocolateConnectionString=<твоя строка>
 #   JwtSettings__Issuer=<Issuer>
 #   JwtSettings__Audience=<Audience>
 #   JwtSettings__SecretKey=<секрет, ≥32 символов>
