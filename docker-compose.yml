@@ -1,6 +1,39 @@
+﻿version: "3.9"
+
+secrets:
+  ChocolateConnectionString:
+    file: ./secrets/ChocolateConnectionString
+  JwtSettings__SecretKey:
+    file: ./secrets/JwtSettings__SecretKey
+
 services:
-  chocolateapi:
-    image: ${DOCKER_REGISTRY-}chocolateapi
+  chocolate_postgres:
+    image: bitnami/postgresql:16
+    container_name: chocolate_postgres
+    environment:
+      POSTGRESQL_DATABASE: chocolatedb
+      POSTGRESQL_USERNAME: chocolate_user
+      POSTGRESQL_PASSWORD: Chocolate_Graph_Passwrd
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/bitnami/postgresql
+
+  chokolateapi:
     build:
-      context: ChocolateAPI
-      dockerfile: Dockerfile
+        context: ./ChocolateAPI
+        dockerfile: Dockerfile
+    container_name: chokolateapi
+    depends_on:
+      - chocolate_postgres
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      # ConnectionStrings__Default и JwtSettings__SecretKey читаются из secrets
+    secrets:
+      - ChocolateConnectionString
+      - JwtSettings__SecretKey
+    ports:
+      - "5001:80"
+
+volumes:
+  pgdata:

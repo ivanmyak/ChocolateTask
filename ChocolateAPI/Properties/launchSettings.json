@@ -8,24 +8,44 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "TaskManager.GraphQL": {
+    "ChocolateAPI": {
       "commandName": "Project",
-      "dotnetRunMessages": true,
       "launchBrowser": true,
-      "applicationUrl": "https://localhost:5001;http://localhost:5000",
+      "launchUrl": "graphql",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+      },
+      "dotnetRunMessages": true,
+      "applicationUrl": "https://localhost:5001;http://localhost:5000"
     },
     "Docker Compose": {
       "commandName": "DockerCompose",
       "launchBrowser": true,
       "launchUrl": "graphql",
-      "dockerComposeFile": "../docker-compose.yml",
-      "serviceName": "chokolate_api",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+      },
+      "dockerComposeFile": "../docker-compose.yml",
+      "serviceName": "chokolate_api"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker",
+      "launchBrowser": true,
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/graphql",
+      "environmentVariables": {
+        "ASPNETCORE_HTTPS_PORTS": "8081",
+        "ASPNETCORE_HTTP_PORTS": "8080"
+      },
+      "publishAllPorts": true,
+      "useSSL": true
+    }
+  },
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:62345/",
+      "sslPort": 44344
     }
   }
 }
