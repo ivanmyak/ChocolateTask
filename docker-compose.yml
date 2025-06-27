@@ -1,0 +1,6 @@
+services:
+  chocolateapi:
+    image: ${DOCKER_REGISTRY-}chocolateapi
+    build:
+      context: ChocolateAPI
+      dockerfile: Dockerfile
